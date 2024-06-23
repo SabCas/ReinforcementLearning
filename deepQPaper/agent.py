@@ -10,10 +10,10 @@ from dqn import DQN
 import time
 
 GAMMA = 0.99
-BATCH_SIZE = 64  # Adjust batch size as needed
-REPLAY_SIZE = 20000  # Adjust replay buffer size as needed
-LEARNING_RATE = 1e-4  # Adjust learning rate as needed
-SYNC_TARGET_FRAMES = 500  # Adjust target network sync frequency as needed
+BATCH_SIZE = 64  
+REPLAY_SIZE = 20000  
+LEARNING_RATE = 1e-4  
+SYNC_TARGET_FRAMES = 500  # Adjust target network sync frequency
 REPLAY_START_SIZE = 20000
 
 EPSILON_START = 1.0
@@ -44,7 +44,7 @@ class Agent:
         self.episode_returns = []
         self.global_step = 0
         
-        self.writer = SummaryWriter()  # Initialize TensorBoard writer
+        self.writer = SummaryWriter()  
         self.skip = skip  # Number of frames to skip
         
         while len(self.replay_buffer) < REPLAY_START_SIZE:

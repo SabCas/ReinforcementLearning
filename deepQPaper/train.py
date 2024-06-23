@@ -1,3 +1,4 @@
+
 """
 This script is the main entry point for training a reinforcement learning agent using the Deep Q-Learning algorithm.
 
@@ -19,7 +20,8 @@ num_gpus = torch.cuda.device_count()
 def main():
     
     env = make_env('PongNoFrameskip-v4')
-    agent = Agent(env, double_dqn=True)
+    agent = Agent(env, dqn_type='DuelingDQN', double_dqn=False)
+
 
     # Train the agent
     num_epochs = 500  

@@ -15,20 +15,10 @@ num_gpus = torch.cuda.device_count()
 def main():
     
     env = make_env('PongNoFrameskip-v4')
-    # Reset environment to get initial observation
-
-
-
-
-    
-
-
-
-    # Create an agent instance
     agent = Agent(env)
 
     # Train the agent
-    num_epochs = 500  # Set the number of epochs you want to train for
+    num_epochs = 500  
     agent.train(num_epochs)
 
 if __name__ == '__main__':

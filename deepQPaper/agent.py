@@ -136,7 +136,7 @@ class Agent:
         actions_v = torch.tensor(actions, dtype=torch.int64).unsqueeze(-1).to(device)
         rewards_v = torch.tensor(rewards, dtype=torch.float32).to(device)
         done_mask = torch.tensor(dones, dtype=torch.bool).to(device)
-        
+
         if self.double_dqn:
             # Double DQN: use online network to select actions and target network to evaluate Q-values
             q_vals_next = self.q_net(next_states_v)
@@ -148,7 +148,7 @@ class Agent:
             # Regular DQN: use target network for both action selection and Q-value evaluation
             q_vals_target = self.target_net(next_states_v)
             next_state_values = q_vals_target.max(1)[0]
-        
+
         next_state_values[done_mask] = 0.0
         next_state_values = next_state_values.detach()
         expected_state_action_values = next_state_values * GAMMA + rewards_v
@@ -156,8 +156,17 @@ class Agent:
         q_vals = self.q_net(states_v)
         state_action_values = q_vals.gather(1, actions_v).squeeze(-1)
 
+        # Calculate TD error
+        td_error = state_action_values - expected_state_action_values
 
-        return nn.MSELoss()(state_action_values, expected_state_action_values)
+        # Clip the TD error
+        clipped_td_error = torch.clamp(td_error, -1.0, 1.0)
+
+        # Compute the loss with clipped TD error
+        loss = torch.mean(clipped_td_error ** 2)
+
+        return loss
+
 
     def update_target_network(self):
         self.target_net.load_state_dict(self.q_net.state_dict())

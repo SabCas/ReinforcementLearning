@@ -1,10 +1,7 @@
 import torch
 from wrapper import make_env
-from pytorch_lightning.loggers import TensorBoardLogger
 from agent import Agent
-from pytorch_lightning.callbacks import EarlyStopping
 import numpy as np
-import pytorch_lightning as pl
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 num_gpus = torch.cuda.device_count()

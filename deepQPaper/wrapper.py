@@ -1,3 +1,26 @@
+"""
+This module contains several wrapper classes that are used to preprocess and transform the environment observations for a reinforcement learning agent.
+
+FireResetEnv:
+    A wrapper that ensures the agent takes the 'FIRE' action after resetting the environment, which is required for some Atari games.
+
+MaxAndSkipEnv:
+    A wrapper that skips a number of frames and returns the maximum observation over the skipped frames, which can help reduce the computational load.
+
+PreprocessFrame:
+    A wrapper that preprocesses the observation frames by converting them to grayscale and resizing them to a fixed size.
+
+BufferWrapper:
+    A wrapper that maintains a buffer of the last N observation frames, which can be useful for agents that need to consider past observations.
+
+ImageToPytorch:
+    A wrapper that transforms the observation to match the expected input format for PyTorch models (channels-first).
+
+ScaledFloatFrame:
+    A wrapper that scales the observation values to the range [0, 1].
+
+The `make_env` function is a convenience function that creates an environment with the necessary wrappers applied.
+"""
 import gymnasium as gym
 import collections
 import numpy as np
@@ -5,7 +28,6 @@ import cv2
 import ale_py.roms  # Ensure Atari ROMs are registe
 
 
-# FireResetEnv Wrapper
 class FireResetEnv(gym.Wrapper):
     def __init__(self, env, fire_reset=True):
         super().__init__(env)
@@ -26,7 +48,6 @@ class FireResetEnv(gym.Wrapper):
                 obs, info = self.env.reset(**kwargs)
         return obs, info
 
-# MaxAndSkipEnv Wrapper
 class MaxAndSkipEnv(gym.Wrapper):
     def __init__(self, env, skip=4):
         super().__init__(env)
@@ -53,7 +74,6 @@ class MaxAndSkipEnv(gym.Wrapper):
         self._obs_buffer.append(obs)
         return obs, info
 
-# PreprocessFrame Wrapper
 class PreprocessFrame(gym.ObservationWrapper):
     def __init__(self, env, shape=(84, 84, 1)):
         super().__init__(env)
@@ -90,7 +110,6 @@ class BufferWrapper(gym.ObservationWrapper):
         return np.copy(self.buffer)
 
 
-# ImageToPytorch Wrapper
 class ImageToPytorch(gym.ObservationWrapper):
     def __init__(self, env):
         super(ImageToPytorch, self).__init__(env)
@@ -109,7 +128,6 @@ class ImageToPytorch(gym.ObservationWrapper):
             observation = np.expand_dims(observation, axis=-1)
         return np.moveaxis(observation, -1, 0)
 
-# ScaledFloatFrame Wrapper
 class ScaledFloatFrame(gym.ObservationWrapper):
     def observation(self, observation):
         return np.array(observation).astype(np.float32) / 255.0
@@ -123,7 +141,6 @@ def make_env(env_name, render_mode='rgb_array'):
     env = BufferWrapper(env, buffer_size=4)
     env = ScaledFloatFrame(env)
 
-          # Ensure environment renders to rgb_array for video recording
     
     return env
 

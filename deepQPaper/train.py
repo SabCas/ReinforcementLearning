@@ -1,3 +1,10 @@
+"""
+This script is the main entry point for training a reinforcement learning agent using the Deep Q-Learning algorithm.
+
+The script sets up the environment using the `make_env` function from the `wrapper` module, and creates an `Agent` instance from the `agent` module. It then trains the agent for a specified number of epochs using the `train` method of the `Agent` class.
+
+The script assumes that a CUDA-enabled GPU is available, and will use it if possible. Otherwise, it will fall back to using the CPU.
+"""
 import torch
 from wrapper import make_env
 from agent import Agent

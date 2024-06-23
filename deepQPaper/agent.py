@@ -1,3 +1,13 @@
+"""
+The `Agent` class is the main reinforcement learning agent that interacts with the environment, stores experiences in a replay buffer, and trains a deep Q-network (DQN) model.
+
+The agent has the following key responsibilities:
+- Initialize the Q-network and target network, as well as the optimizer and replay buffer.
+- Implement the `play_step` method to interact with the environment, store experiences, and update the agent's state.
+- Implement the `calc_loss` method to compute the loss for a batch of experiences, used for training the Q-network.
+- Implement the `update_target_network` method to periodically update the target network with the latest weights from the Q-network.
+- Implement the `train` method to train the agent for a specified number of epochs, including logging metrics to TensorBoard.
+"""
 import numpy as np
 import collections
 import torch
@@ -15,6 +25,7 @@ REPLAY_SIZE = 20000
 LEARNING_RATE = 1e-4  
 SYNC_TARGET_FRAMES = 500  # Adjust target network sync frequency
 REPLAY_START_SIZE = 20000
+SKIP = 4
 
 EPSILON_START = 1.0
 EPSILON_FINAL = 0.01
@@ -24,7 +35,7 @@ Experience = collections.namedtuple('Experience', field_names=['state', 'action'
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 from torch.utils.tensorboard import SummaryWriter
-writer = SummaryWriter('logs/')  # Replace 'logs/' with your desired log directory
+writer = SummaryWriter('logs/')  
 
 
 
@@ -45,7 +56,7 @@ class Agent:
         self.global_step = 0
         
         self.writer = SummaryWriter()  
-        self.skip = skip  # Number of frames to skip
+        self.skip = SKIP  # Number of frames to skip
         
         while len(self.replay_buffer) < REPLAY_START_SIZE:
             self.play_step(epsilon=self.epsilon)

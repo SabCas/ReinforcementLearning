@@ -1,3 +1,16 @@
+"""
+Implements a replay buffer for storing and sampling experiences in a reinforcement learning environment.
+
+The `ReplayBuffer` class provides methods for adding experiences to the buffer and sampling a batch of experiences from the buffer.
+
+Attributes:
+    buffer (collections.deque): A deque that stores the experiences, with a maximum length specified by the `capacity` parameter.
+
+Methods:
+    add_sample(state, action, reward, done, new_state): Adds a new experience to the buffer.
+    sample(batch_size): Samples a batch of experiences from the buffer.
+    __len__(): Returns the number of experiences in the buffer.
+"""
 import numpy as np
 import collections
 

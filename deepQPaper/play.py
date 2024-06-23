@@ -64,15 +64,15 @@ if __name__ == "__main__":
     while True:
         start_ts = time.time()
 
-        env.render()  # Render the environment in 'human' mode
-        state_v = torch.tensor(np.array([state], copy=False))  # Convert state to tensor
-        q_vals = net(state_v).data.numpy()[0]  # Forward pass through the DQN
-        action = np.argmax(q_vals)  # Choose action based on Q-values
+        env.render()  
+        state_v = torch.tensor(np.array([state], copy=False))  
+        q_vals = net(state_v).data.numpy()[0]  
+        action = np.argmax(q_vals)  
         c[action] += 1
 
-        state, reward, terminated, truncated, _ = env.step(action)  # Take action in the environment
-        done  = terminated or truncated  # Check if episode is done     
-        total_reward += reward  # Accumulate total reward
+        state, reward, terminated, truncated, _ = env.step(action) 
+        done  = terminated or truncated      
+        total_reward += reward  
 
         if done:
             break
@@ -85,4 +85,4 @@ if __name__ == "__main__":
     print("Action counts:", c)
 
     if args.record:
-        env.close()  # Close environment after recording video
+        env.close()  

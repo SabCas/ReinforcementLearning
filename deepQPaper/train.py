@@ -8,7 +8,7 @@ The script assumes that a CUDA-enabled GPU is available, and will use it if poss
 """
 import torch
 from wrapper import make_env
-from agent import Agent
+from REINFORCE.agent import Agent
 import numpy as np
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

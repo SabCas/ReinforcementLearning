@@ -39,6 +39,11 @@ cd deep-q-learning-atari
 - Contributing
   Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
+## Install the required packages by running:
+
+```
+pip install -r requirements.txt
+```
 
 https://github.com/SabCas/ReinforcementLearning/assets/110026351/41a3112d-2ae7-41f0-a7e5-7ddc742a6021
 

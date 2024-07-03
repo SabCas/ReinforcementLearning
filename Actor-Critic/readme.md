@@ -14,7 +14,7 @@ The actor and critic work together in an iterative process. The actor takes acti
 Clone the repository:
 ```
 git clone https://github.com/SabCas/ReinforcementLearning.git
-``
+```
 
 Navigate to the Actor-Critic directory:
 ```

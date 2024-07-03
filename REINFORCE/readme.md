@@ -33,5 +33,8 @@ pip install -r requirements.txt
 ```
 
 
-https://github.com/SabCas/ReinforcementLearning/assets/110026351/f6ec12b8-f9d7-46df-8565-3244d24ecaf9
+
+
+https://github.com/SabCas/ReinforcementLearning/assets/110026351/319f6f33-08c0-4a4f-a469-f97f757efceb
+
 

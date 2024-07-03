@@ -1,3 +1,12 @@
+"""
+This module contains the main entry point for the Actor-Critic reinforcement learning agent.
+
+The `main()` function sets up the environment, creates an Agent instance, and runs the training loop for a specified number of games. It also logs the initial values of the learning rate and discount factor, as well as the average reward per episode, to TensorBoard.
+
+The `compute_average_rewards()` function calculates the average reward over a specified interval of episodes.
+
+The `log_initial_values_and_avg_reward()` function creates a TensorBoard log directory and logs the initial values and average reward per episode.
+"""
 import gymnasium as gym
 from gymnasium.wrappers import RecordVideo, RecordEpisodeStatistics, TimeLimit
 from torch.utils.tensorboard import SummaryWriter as tf

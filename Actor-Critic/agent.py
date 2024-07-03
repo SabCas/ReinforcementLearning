@@ -1,3 +1,22 @@
+"""
+The `Agent` class is responsible for managing the actor-critic network and performing actions based on the current state.
+
+Attributes:
+    state_space (int): The size of the state space.
+    action_space (int): The size of the action space.
+    lr (float): The learning rate for the actor-critic network.
+    gamma (float): The discount factor for future rewards.
+    actor_critic (Actor_Critic): The actor-critic network.
+    log_prob (torch.Tensor): The log probability of the chosen action.
+
+Methods:
+    choose_action(obs: np.ndarray) -> int:
+        Selects an action based on the current state.
+    store_reward(reward: float):
+        Stores the reward for the current step.
+    train(state: np.ndarray, reward: float, new_state: np.ndarray, done: bool):
+        Trains the actor-critic network using the current state, reward, and next state.
+"""
 from actor_critic_network import Actor_Critic
 import torch
 import numpy as np

@@ -37,4 +37,8 @@ cd deep-q-learning-atari
 - train.py: Entry point for training the agent.
 - play.py: Entry point for evaluating a trained agent.
 - Contributing
+
+https://github.com/SabCas/ReinforcementLearning/assets/110026351/41a3112d-2ae7-41f0-a7e5-7ddc742a6021
+
+
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.

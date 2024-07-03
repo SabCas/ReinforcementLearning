@@ -5,9 +5,16 @@ from agent import Agent
 import numpy as np
 
 
+"""
+Computes the average rewards every 100 episodes and logs the initial values and average reward to TensorBoard.
 
+Args:
+    rewards (list): A list of rewards for each episode.
+    interval (int): The interval at which to compute the average rewards (default is 100).
 
-    # Function to compute average rewards every 100 episodes
+Returns:
+    list: A list of average rewards for each interval.
+"""
 def compute_average_rewards(rewards, interval=100):
     avg_rewards = []
     for i in range(0, len(rewards), interval):
@@ -15,7 +22,15 @@ def compute_average_rewards(rewards, interval=100):
         avg_rewards.append(avg_reward)
     return avg_rewards
 
-# Function to log initial values and average reward
+"""
+Logs the initial values (learning rate and gamma) and the average reward to TensorBoard.
+
+Args:
+    log_dir (str): The directory to save the TensorBoard logs.
+    lr_init (float): The initial learning rate.
+    gamma_init (float): The initial gamma value.
+    avg_rewards (list): A list of average rewards for each interval.
+"""
 def log_initial_values_and_avg_reward(log_dir, lr_init, gamma_init, avg_rewards):
     writer = tf.summary.create_file_writer(log_dir)
 
@@ -30,7 +45,27 @@ def log_initial_values_and_avg_reward(log_dir, lr_init, gamma_init, avg_rewards)
 
     writer.close()
 
+
+
+
+ 
+"""
+    Runs the main training loop for the REINFORCE agent on the LunarLander-v3 environment.
+    
+    The function creates the environment, wraps it with a TimeLimit and RecordVideo wrapper, creates an Agent instance, and then runs the training loop for 3000 episodes.
+    
+    During the training loop, the agent chooses an action, steps the environment, stores the reward, and then trains the agent. The average score over the last 100 episodes is printed after each episode.
+    
+    After the training loop, the initial values (learning rate and gamma) and the average reward over the training run are logged to TensorBoard.
+    
+    Args:
+        None
+    
+    Returns:
+        None
+    """
 def main():
+
     env = gym.make('LunarLander-v3', render_mode='rgb_array')
     env = TimeLimit(env, max_episode_steps=400)
     env = RecordVideo(env, video_folder='videos/', episode_trigger=lambda episode_id: episode_id % 50 == 0)

@@ -1,3 +1,23 @@
+"""
+The `Agent` class is responsible for managing the reinforcement learning agent's policy network, action selection, and training.
+
+Attributes:
+    state_space (int): The size of the state space.
+    action_space (int): The size of the action space.
+    lr (float): The learning rate for the policy network.
+    gamma (float): The discount factor for future rewards.
+    policy (PolicyNetwork): The policy network used by the agent.
+    reward_memory (list): A list of rewards collected during an episode.
+    action_memory (list): A list of log probabilities of actions taken during an episode.
+
+Methods:
+    choose_action(obs: np.ndarray) -> int:
+        Selects an action based on the current observation using the policy network.
+    store_reward(reward: float):
+        Stores a reward in the reward memory.
+    train():
+        Trains the policy network using the collected rewards and actions.
+"""
 from policy_network import PolicyNetwork
 import torch
 import numpy as np

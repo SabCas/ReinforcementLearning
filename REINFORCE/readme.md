@@ -25,3 +25,9 @@ You can monitor the training progress using TensorBoard. After running the main.
 ```
 tensorboard --logdir=logs
 ```
+
+## Install the required packages by running:
+
+```
+pip install -r requirements.txt
+```

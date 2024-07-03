@@ -29,12 +29,12 @@ cd deep-q-learning-atari
 ```
 
 ## Project Structure
-agent.py: Contains the Agent class for training and interacting with the environment.
-dqn.py: Defines the DQN model architecture.
-duelingDQN.py: Defines the Dueling DQN model architecture.
-replaybuffer.py: Implements the experience replay buffer.
-wrapper.py: Contains environment wrappers for preprocessing observations.
-train.py: Entry point for training the agent.
-play.py: Entry point for evaluating a trained agent.
-Contributing
+- agent.py: Contains the Agent class for training and interacting with the environment.
+- dqn.py: Defines the DQN model architecture.
+- duelingDQN.py: Defines the Dueling DQN model architecture.
+- replaybuffer.py: Implements the experience replay buffer.
+- wrapper.py: Contains environment wrappers for preprocessing observations.
+- train.py: Entry point for training the agent.
+- play.py: Entry point for evaluating a trained agent.
+- Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
